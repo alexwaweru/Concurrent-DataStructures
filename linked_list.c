@@ -18,15 +18,15 @@
 // Node structure and all the routines that operate on the node
  struct Node
  {
-     void *data;
+     void* data;
      struct Node *prev;
      struct Node *next;
  };
 
-void get_data(node)
+void* get_data(node)
     struct Node node;
     {
-        return *node.data;
+        return node.data;
     }
 
 struct Node get_next(node)
