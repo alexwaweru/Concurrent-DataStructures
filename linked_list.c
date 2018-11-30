@@ -41,14 +41,12 @@ void set_data(node, data)
         node.data = data;
     }
 
-
 void set_next(node1, node2)
     struct Node node1;
     struct Node node2;
     {
         node1.next = &node2;
     }
-
 
 
 // Linked List structure and the routines that operate on it
