@@ -121,7 +121,7 @@ bool search(list, data)
         return found;
     }
 
-void delete(list, data)
+void remove(list, data)
     struct LinkedList list;
     {
         struct Node current = get_head(list);
