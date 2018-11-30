@@ -5,13 +5,9 @@
   @brief        Concurrent linked list - Routines that operate concurrently on a linked list
 *******************************************************************************/
 
+
+// Header files
 #include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <dirent.h>
-#include <sys/stat.h>
 #include <stdbool.h>
 
 
