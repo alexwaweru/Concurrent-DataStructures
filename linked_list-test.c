@@ -8,11 +8,6 @@
 
 // Header files
 //#include "linked_list.h"
-#include <stdlib.h>
-#include <stdbool.h>
-#include <pthread.h>
-#include <assert.h>
-#include <stdio.h>
 
 // Structure tests
 
