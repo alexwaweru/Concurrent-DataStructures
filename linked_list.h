@@ -27,11 +27,22 @@ typedef struct __list_t {
   pthread_mutex_t lock;
 } list_t;
 
+// basic input structure for threads
+typedef struct __inputs_t {
+  list_t *list1;
+  int key1;
+} input_t;
+
 
 void List_Init(list_t *L) {
   L->head = NULL;
   pthread_mutex_init(&L->lock, NULL);
   printf("list successfully initiliazed\n");
+}
+
+
+int List_Insert_Threads(input_t *t){
+    return List_Insert(&t->list1, &t->key1);
 }
 
 
@@ -50,6 +61,11 @@ int List_Insert(list_t *L, int key) {
   printf("%d successfully inserted at index 0\n", key);
   pthread_mutex_unlock(&L->lock);
   return 0; // success
+}
+
+
+int List_Lookup_Threads(input_t *t){
+    return List_Lookup(&t->list1, &t->key1);
 }
 
 
@@ -72,19 +88,24 @@ int List_Lookup(list_t *L, int key) {
 }
 
 
+int List_Delete_Threads(input_t *t){
+    return List_Delete(&t->list1, &t->key1);
+}
+
+
 int List_Delete(list_t *L, int key) {
   pthread_mutex_lock(&L->lock);
   node_t *prev = NULL;
   node_t *curr = L->head;
   while (curr) {
-    if (curr->key == key && &prev == NULL){
-      L->head = NULL;
+    if (curr->key == key && !prev){
+      *L->head = *L->head->next;
       pthread_mutex_unlock(&L->lock);
       printf("%d deleted successfully\n", key);
       return 0; // success
     }
     if (curr->key == key) {
-      &prev->next = &curr->next;
+      prev->next = curr->next;
       pthread_mutex_unlock(&L->lock);
       printf("%d deleted successfully\n", key);
       return 0; // success
