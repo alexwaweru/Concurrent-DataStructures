@@ -1,4 +1,13 @@
 # Concurrent Data Structures implemented in C
+
+This project is about implementation of concurrent data structures in C Programming language.
+
+## Requirements & Concepts:
+
+- Multi-threading: implemented using pthread.h 
+- Mutex locks: implemented using pthread.h
+- Understanding of C structures
+- Understanding of C pointers
  
 ## Note:
 
