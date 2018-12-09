@@ -27,22 +27,11 @@ typedef struct __list_t {
   pthread_mutex_t lock;
 } list_t;
 
-// basic input structure for threads
-typedef struct __inputs_t {
-  list_t *list1;
-  int key1;
-} input_t;
-
 
 void List_Init(list_t *L) {
   L->head = NULL;
   pthread_mutex_init(&L->lock, NULL);
   printf("list successfully initiliazed\n");
-}
-
-
-int List_Insert_Threads(input_t *t){
-    return List_Insert(&t->list1, &t->key1);
 }
 
 
@@ -64,11 +53,6 @@ int List_Insert(list_t *L, int key) {
 }
 
 
-int List_Lookup_Threads(input_t *t){
-    return List_Lookup(&t->list1, &t->key1);
-}
-
-
 int List_Lookup(list_t *L, int key) {
   pthread_mutex_lock(&L->lock);
   node_t *curr = L->head;
@@ -85,11 +69,6 @@ int List_Lookup(list_t *L, int key) {
   pthread_mutex_unlock(&L->lock);
   printf("%d not found in the list\n", key);
   return -1; // failure
-}
-
-
-int List_Delete_Threads(input_t *t){
-    return List_Delete(&t->list1, &t->key1);
 }
 
 

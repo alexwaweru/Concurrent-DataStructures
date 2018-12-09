@@ -2,54 +2,6 @@
 
 #include "ccounter.h"
 
-/*************************************
-void counter1(int argc, char const *argv[])
-{
-    printf("Thread 1\n");
-    struct _counter_t c;
-
-    init(counter_t *c)
-    int t = 11;;
-    int r = 10;
-    int s = t+r;
-    if(s >0){
-	 increment(&c);
-    }
-    return;
-}
-void counter2(int argc, char const *argv[])
-{
-    printf("Thread 1\n");
-    struct _counter_t c;
-
-    init(counter_t *c)
-    int t = 10;;
-    int r = 10;
-    int s = t-r;
-    if(s < 1 ){
-	 increment(&c);
-    }
-    return;
-}
-
-int main(int argc, char *argv[])
-{
-    pthread_t p1, p2;
-    int rc;
-    printf("main: begin\n");
-    pthread_create(&p1, NULL, counter1, "A");
-    pthread_create(&p2, NULL, counter2, "B");
-
-    // join waits for the threads to finish
-    pthread_join(p1, NULL);
-    pthread_join(p2, NULL);
-    printf("%s%d\n", "the counter is at ", get(&c));
-    return 0;
-
-}
-
-*********************************************************/
-
 
 int main(int argc, char const *argv[])
 {
