@@ -58,7 +58,7 @@ struct DataItem *search(int key) {
    return NULL;
 }
 
-//Item inserting function (indexNumber, "name")
+//Item inserting function (int indexNumber, int value)
 void insert(int key,int data) {
     pthread_mutex_lock(&mutexI);//locking the critical section
 
@@ -83,7 +83,7 @@ void insert(int key,int data) {
    pthread_mutex_unlock(&mutexI); //unlocking the critical section
 }
 
-//Deleting function (indexNumber)
+//Deleting function (Item)
 struct DataItem* delete1(struct DataItem* item) {
    pthread_mutex_lock(&mutexD);//locking the critical section
    int key = item->key;
@@ -125,74 +125,4 @@ void display() {
    printf("\n");
 }
 
-
-//Main execution function for the HashTable commands
-int main() {
-   dummyItem = (struct DataItem*) malloc(sizeof(struct DataItem));
-   dummyItem->data = -1;
-   dummyItem->key = -1;
-
-   printf("Empty Hash Table of size %d \n",SIZE);
-   display(); //displaying the HT
-
-
-   printf("### Hash Table Functionality tests: ###\n");
-
-   //Insert testing
-   printf("***Insert tests \n");
-   insert(57442019,10);
-   insert(22002019,30);
-   insert(24492019,20);
-   insert(55552019,40);
-   display();
-
-   //searching for a student using index number
-   printf("***Search tests \n");
-   item = search(57442019); //Search 1
-   if(item != NULL) {
-      printf("Element found: %d\n", item->data);
-   } else {
-      printf("Element not found\n");
-   }
-   item = search(55552019); //Search 2
-   if(item != NULL) {
-      printf("Element found: %d\n", item->data);
-   } else {
-      printf("Element not found\n");
-   }
-   item = search(24492019); //Search 2
-   if(item != NULL) {
-      printf("Element found: %d\n", item->data);
-   } else {
-      printf("Element not found\n");
-   }
-   printf("\n");
-
-   printf("***Delete tests \n");
-   delete1(item);
-   //delete(item1);
-   display();
-
-   printf("***Search Deleted items tests \n");
-   int ID = 24492019;
-   item = search(ID);
-   if(item != NULL) {
-      printf("Element found: %d \n", item->data);
-   } else {
-      printf("Element not found for Key: %d\n",ID);
-   }
-   display();
-
-   printf("### Testing concurrency of for delete and insert ###\n ");
-   printf("***Insert tests \n");
-   args = (struct DataItem*) malloc(sizeof(struct DataItem));
-   int id1 = 4223392, data1 = 0;
-   args->key = id1;
-   args->data = data1;
-   pthread_create(&thread1, NULL,(void *) insert,(void *)&args);
-   pthread_create(&thread2, NULL,(void *) insert,NULL);
-   pthread_join(thread1, NULL);
-   pthread_join(thread2, NULL);
-   display();
-}
 
